@@ -1,33 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
 import "./index.css";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import RegistrationPage from "./assets/components/layout/RegistrationPage.jsx";
-import LogIn from "./assets/components/Layout/LogIn.jsx";
-
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-   // errorElement:<ErrorPage></ErrorPage>,
-    children: [
-      {
-        path: "/",
-        element: <RegistrationPage />,
-      },
-      {
-        path: "/login",
-        element: <LogIn />,
-      }
-     
-    ],
-  },
-]);
+import { RouterProvider } from "react-router-dom";
+import router from "./assets/components/Provider/router";
+import AuthProvider from "./assets/components/Provider/AuthContext";
+import { HelmetProvider } from "react-helmet-async";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-
-  <RouterProvider router={router}></RouterProvider>
- 
+<HelmetProvider>
+<AuthProvider>
+    <RouterProvider router={router} />
+  </AuthProvider>
+</HelmetProvider>
 );
